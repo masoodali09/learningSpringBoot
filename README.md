@@ -1,1 +1,91 @@
-# learningSpringBoot
+Spring Boot Authentication and Authorization API
+This is a Spring Boot project that provides authentication and authorization functionalities, including login, signup, JWT-based security, and role-based access control.
+
+Features
+User registration and login.
+JWT-based authentication for secure APIs.
+Role-based access control.
+Secure password storage using BCrypt.
+API endpoints for user details.
+Prerequisites
+Before setting up the project, ensure you have the following installed:
+
+Java: JDK 17 or later
+Maven: Version 3.6 or later
+Database: MySQL Server and MySQL WorkBench
+Git: Version control system
+Setup Instructions
+1. Clone the Repository
+Clone this repository from GitHub using the following command:
+
+git clone https://github.com/DevHamxa/Social_Media_Platform.git
+2. Importing the Database
+The database schema and data for this project are provided in the database.sql file located in the root directory of the project.
+
+Steps to Import the Database using MySQL Workbench:
+Open MySQL Workbench and connect to your MySQL server.
+
+Create a New Database:
+
+In the MySQL Workbench window, click on the + button next to MySQL Connections to start a new connection if you haven't connected to the server yet.
+Once connected, click on the Create New Schema icon.
+Name the schema (e.g., social) and click Apply.
+Import the Database Schema:
+
+In the menu bar, go to File > Open SQL Script.
+Browse to the root directory of your project and select the Dump20250120.sql file.
+Once the file is open, click the Execute button (lightning bolt icon) to run the SQL script.
+Verify the Database:
+
+After executing the script, you should see the newly created database with all the tables and data populated in the Schemas section in MySQL Workbench.
+You can expand the database and check the tables to confirm that the import was successful.
+Update Database Configuration:
+
+Ensure that your application.properties file is configured to connect to the newly imported database. Update the database name, username, and password as required:
+spring:
+  datasource:
+    url: jdbc:jdbc:mysql://127.0.0.1:3306/social
+    username: your-username
+    password: your-password
+3. API Endpoints
+User Signup
+Endpoint: http://localhost:8080/api/v1/auth/register
+Method: POST
+Description: Allows users to register a new account.
+Request Body:
+
+{
+     "userName": "Ali",
+     "email": "Alidoe5@example.com",
+     "password": "SecurePassword123"
+}
+
+User Login
+Endpoint: http://localhost:8080/api/v1/auth/authenticate
+Method: POST
+Description: Allows users to login to there account.
+Request Body: null
+
+{
+  "email": "Alidoe5@example.com",
+  "password": "SecurePassword123"
+}
+User Detail
+Endpoint: http://localhost:8080/users/1
+Method: GET
+Description: Allows users to login to there account.
+
+Request Header: JWT token e.g
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGlkb2U0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzM3NDkzOTg2LCJleHAiOjE3Mzc1ODAzODZ9.g_yhwnUO1FfxdBDNBQoOPZ5mEficTcA6Ygaf-6c3naQ
+Request Body: null
+
+Following
+Endpoint: http://localhost:8080/follows/following?userId=2
+Method: GET
+Description: Allows users to get the users that are following him/her.
+
+Request Header: JWT token e.g
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGlkb2U0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzM3NDkzOTg2LCJleHAiOjE3Mzc1ODAzODZ9.g_yhwnUO1FfxdBDNBQoOPZ5mEficTcA6Ygaf-6c3naQ
+Request Body: null
